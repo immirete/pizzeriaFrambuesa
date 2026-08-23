@@ -25,17 +25,17 @@ PRECIOS = {
     "Pizza Carbonara Mediana": 11.90,
     "Pizza Carbonara Familiar": 15.90,
     
-    "Pizza Margarita Individual": 7.50,
-    "Pizza Margarita Mediana": 11.90,
-    "Pizza Margarita Familiar": 15.90,
+    "Pizza Margarita Individual": 6.50,
+    "Pizza Margarita Mediana": 9.90,
+    "Pizza Margarita Familiar": 12.90,
     
     "Pizza Pepperoni Individual": 7.50,
     "Pizza Pepperoni Mediana": 11.90,
     "Pizza Pepperoni Familiar": 15.90,
     
-    "Pizza Vegetariana Individual": 7.50,
-    "Pizza Vegetariana Mediana": 11.90,
-    "Pizza Vegetariana Familiar": 15.90,
+    "Pizza Vegetariana Individual": 7.00,
+    "Pizza Vegetariana Mediana": 11.20,
+    "Pizza Vegetariana Familiar": 14.90,
     
     # Precios de Bebidas y Formatos
     "Coca-Cola de lata": 2.00,
@@ -49,8 +49,8 @@ PRECIOS = {
 # Tus frases de relleno personalizadas para eliminar la latencia (Sirve de plano para grabar_fijos.py)
 FRASES_RELLENO = [
     "A ver...si, ahora mismo",
-    "Entiendo... voy a ello",
-    "Un segundo...si ",
+    "Estupendo... Voy a ello",
+    "Un segundo...Si, enseguida ",
     "Vale...entendido",
     "Entendido! Déjame ver..."
 ]
@@ -68,8 +68,8 @@ PROMPT_TELEFONO = (
     "2. Responde SIEMPRE con una única frase muy corta y al grano (máximo 12 palabras).\n"
     "3. Si el cliente dice mal un ingrediente (ej: 'cargonara' o 'barbaco'), asimila que es 'Carbonara' o 'Barbacoa' según la carta, pero no le digas cómo hablar.\n"
     "4. Si el cliente pide una bebida, asegúrate de confirmar si la quiere de 'lata' o 'grande' según nuestra carta.\n"
-    "5. Si el pedido es para RECOGER, recuérdale sutilmente la dirección de la Calle Frambuesa 4 de Sant Adrià de Besòs.\n"
-    "6. Si el pedido es para ENVIAR a domicilio, debes solicitar obligatoriamente al cliente: su Dirección de entrega completa, su Nombre completo y su Teléfono de contacto.\n"
+    "5. Si el pedido es para RECOGER, recuérdale sutilmente la dirección de Calle Frambuesa.\n"
+    "6. Si el pedido es para ENVIAR a domicilio, debes solicitar obligatoriamente al cliente: su Dirección de entrega completa y su Teléfono de contacto.\n"
     "7. Si el cliente pide la cuenta o pregunta cuánto cuesta, NO inventes números. Limítate a decir algo como: 'Perfecto, un segundo que te calculo el total'.\n"
     "8. No saludes dos veces, no repitas tu propio nombre y no inventes productos fuera de la carta. Mantén un tono rápido y comercial."
 )

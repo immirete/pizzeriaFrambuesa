@@ -73,21 +73,52 @@ def escanear_frase_y_actualizar_carrito(texto_cliente):
         return f"Apuntada la {bebida_detectada} para la cuenta."
     return None
 
-def generar_ticket_y_despedida(nombre, json_p):
+def generar_ticket_y_despedida(nombre, datos_reparto):
+    """Genera el desglose total exacto de la caja usando los datos de Python y el formulario"""
     total, linhas = 0.0, []
+    
+    # 1. Sumamos las pizzas añadidas en el carrito interno de Python
     for p in carrito_interno["Pizzas"]:
         total += p["precio"]
         linhas.append(f" - 1x Pizza {p['sabor']} ({p['tamanio']}) -> {p['precio']:.2f}€")
+        
+    # 2. Sumamos las bebidas
     for b in carrito_interno["Bebidas"]:
         total += b["precio"]
         linhas.append(f" - 1x {b['nombre']} -> {b['precio']:.2f}€")
+        
     if total == 0.0:
         hablar_texto_dinamico(f"Perfecto {nombre}. No hemos anotado platos. ¡Hasta la próxima!")
         return
+        
+    # Dora recita la cuenta exacta cantada por el hardware
     hablar_texto_dinamico(f"Perfecto {nombre}. El total de tu comanda son exactamente {total:.2f} euros.")
-    hablar_texto_dinamico("En unos veinte minutos puedes pasar a recogerla por el local." if json_p["tipo_entrega"] == "recoger" else "El repartidor llegará a tu domicilio en unos treinta minutos.")
+    
+    # Leemos directamente las variables del diccionario unificado del formulario
+    if datos_reparto["tipo_entrega"] == "recoger":
+        hablar_texto_dinamico("En unos veinte minutos puedes pasar a recogerla por el local de la Calle Frambuesa. ¡Muchas gracias por tu llamada!")
+    else:
+        hablar_texto_dinamico("El repartidor llegará a tu domicilio en unos treinta minutos. ¡Muchas gracias por tu compra!")
+        
+    # 3. Escribimos el documento físico final cruzando los datos reales de reparto
     with open("ticket_cocina.txt", "w", encoding="utf-8") as f:
-        f.write(f"🍕 --- TICKET DE COCINA ---\n👤 CLIENTE: {nombre}\n📦 ENTREGA: {json_p['tipo_entrega'].upper()}\n------------------------------------------------\n🛒 PRODUCTOS:\n" + "\n".join(linhas) + f"\n------------------------------------------------\n💰 TOTAL NETO: {total:.2f} EUR\n")
+        f.write(f"🍕 --- TICKET DE COCINA - PIZZERÍA FRAMBUESA ---\n")
+        f.write(f"👤 CLIENTE: {nombre}\n")
+        f.write(f"📦 ENTREGA: {datos_reparto['tipo_entrega'].upper()}\n")
+        
+        # SI ES DOMICILIO, FORZAMOS LA ESCRITURA MEDIANTE LAS CLAVES DEL FORMULARIO
+        if datos_reparto['tipo_entrega'] == 'domicilio':
+            f.write(f"📍 DIRECCIÓN: {datos_reparto['direccion']}\n")
+            f.write(f"📞 TELÉFONO: {datos_reparto['telefono']}\n")
+            
+        f.write(f"------------------------------------------------\n")
+        f.write(f"🛒 PRODUCTOS DETALLADOS:\n")
+        for linea in linhas: 
+            f.write(f"{linea}\n")
+        f.write(f"------------------------------------------------\n")
+        f.write(f"💰 TOTAL NETO A COBRAR: {total:.2f} EUR\n")
+        
+    print("\n📝 [SISTEMA] 'ticket_cocina.txt' detallado guardado con éxito para los pizzeros.")
 
 # =====================================================================
 # 🚀 EJECUCIÓN CENTRALITA
