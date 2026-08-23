@@ -1,0 +1,19 @@
+# .gitignore para el proyecto Pizzería Frambuesa
+
+# Ignorar pesos de modelos de voz (Kokoro)
+*.pt
+*.pth
+*.bin
+*.onnx
+
+# Ignorar la caché local de audios de relleno pregenerados
+audios_fijos/
+
+# Ignorar archivos generados por Python en ejecución
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar los tickets de cocina reales de los clientes
+ticket_cocina.txt
+temp_cliente.wav
