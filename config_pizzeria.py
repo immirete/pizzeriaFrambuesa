@@ -1,7 +1,7 @@
 # config_pizzeria.py
 
 # Ruta del archivo de voz de Dora en tu Dell Latitude
-RUTA_VOZ_LOCAL = "/home/ivan/Descargas/kororo/ef_dora.pt"
+RUTA_VOZ_LOCAL = "em_dora.pt"
 
 NOMBRE_PIZZERIA = "Pizzería Frambuesa"
 DIRECCION_RECOGIDA = "Calle Frambuesa 4, Sant Adrià de Besòs"

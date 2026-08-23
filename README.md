@@ -327,21 +327,20 @@ Sample rate: 24 kHz
 
 # ▶️ Ejecución
 
-## 1. Generar audios de relleno
+## 🚀 Inicio Automático (Auto-Setup)
 
-Antes de ejecutar la centralita, genera los archivos de audio utilizados para ocultar la latencia:
-
-```bash
-python grabar_fijos.py
-```
-
-## 2. Iniciar la centralita
+Gracias al nuevo motor de autocuración por capas, no se necesitan scripts intermedios de preparación de audio. Para arrancar la centralita por primera vez, simplemente ejecuta en tu terminal:
 
 ```bash
 python telefono_pizza_final.py
 ```
 
-La aplicación iniciará el sistema de escucha y podrá comenzar a gestionar pedidos por voz.
+### ¿Qué ocurrirá en el primer arranque?
+1. El script comprobará si el archivo de voz `ef_dora.pt` está en la raíz. Si falta, **lo descargará de internet automáticamente**.
+2. Verificará la existencia de la caché local de audios de respuesta inmediata. Si falta algún archivo, **los grabará todos de golpe** en la carpeta local.
+3. El sistema iniciará inmediatamente el servicio de escucha activa y Dora te saludará de viva voz por tus auriculares.
+
+*(A partir del segundo arranque, el proceso se saltará las descargas y se activará en menos de un segundo de forma 100% offline).*
 
 ---
 
@@ -353,7 +352,7 @@ Una estructura recomendada sería:
 pizzeria-frambuesa/
 │
 ├── telefono_pizza_final.py
-├── grabar_fijos.py
+├── autocreador.py
 ├── ef_dora.pt
 │
 ├── audio/
